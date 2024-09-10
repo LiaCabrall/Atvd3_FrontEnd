@@ -21,17 +21,19 @@ function App() {
 
     let rollCount = 0;
     const maxRolls = 5;
-    const interval = 100; 
+    const interval = 100;
 
     const intervalId = setInterval(() => {
-      setDie1(rollDie());
-      setDie2(rollDie());
+      const newDie1 = rollDie();
+      const newDie2 = rollDie();
+      setDie1(newDie1);
+      setDie2(newDie2);
       rollCount++;
 
       if (rollCount >= maxRolls) {
         clearInterval(intervalId);
         setIsRolling(false);
-        const sum = die1 + die2;
+        const sum = newDie1 + newDie2;
         setTotalRolls(prevTotal => prevTotal + 1);
         if (checkWin(sum)) {
           setWins(prevWins => prevWins + 1);
@@ -69,5 +71,3 @@ function App() {
 }
 
 export default App;
-
-
